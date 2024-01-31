@@ -1,5 +1,8 @@
 <div class="login-main-logo mt-lg-5 mt-md-4 mt-sm-2">
-  <img  src="assets\images\loginpage\visitor-management-system-transparent.png" alt="login-page-logo">
+  <img
+    src="assets\images\loginpage\visitor-management-system-transparent.png"
+    alt="login-page-logo"
+  />
 </div>
 
 <div class="container">
@@ -37,17 +40,21 @@
             pattern="[a-z0-9A-Z!@#$%^&*]+"
             required
             placeholder="Enter Password"
-            
           />
-          
+
           <i class="fa-solid fa-lock"></i>
           <i class="fa-solid fa-eye" (click)="showHidePassword()"></i>
+          <div
+            class="forgot-password text-end mb-3 mt-2 pe-3"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            Forgot Password?
+          </div>
         </div>
+
         <div class="text-center">
-          <button
-            class="common-btn"
-            type="submit"
-            >
+          <button class="common-btn" type="submit">
             <i class="fa-solid fa-circle-check"></i>
             {{ authConstants.BUTTON_TEXT }}
           </button>
@@ -60,6 +67,38 @@
         alt="secure login"
         draggable="false"
       />
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
     </div>
   </div>
 </div>

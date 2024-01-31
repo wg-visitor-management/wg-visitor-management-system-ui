@@ -1,56 +1,72 @@
-/* You can add global styles to this file, and also import other style files */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 
-    --primary-color :#cd1a1a;
-    --primary-hover-color: #ae0000;
-    --primary-bg-color: #ffffff;
-    --primary-text-color: #000000;
-    --secondary-text-color: #ffffff;
-    // --main-border-color: #ffffff;
-    --main-transition: all 0.3s ease;
-    --main-shadow: 0px 2px 4px 4px rbga(0, 0, 0, 0.1);
-    --main-shadow-hover: 0px 2px 4px 4px rbga(0, 0, 0, 0.2);
-    --main-shadow-active: 0px 2px 4px 4px rbga(0, 0, 0, 0.3);
+  --primary-color: #cd1a1a;
+  --primary-hover-color: #ae0000;
+  --primary-bg-color: #ffffff;
+  --primary-text-color: #000000;
+  --secondary-text-color: #ffffff;
+  --main-transition: all 0.3s ease;
+  --main-shadow: 0px 2px 4px 4px rbga(0, 0, 0, 0.1);
+  --main-shadow-hover: 0px 2px 4px 4px rbga(0, 0, 0, 0.2);
+  --main-shadow-active: 0px 2px 4px 4px rbga(0, 0, 0, 0.3);
 }
 
 body {
-    // font-family: 'Roboto', sans-serif;
-    font-family: 'Poppins', sans-serif;  
-    background-color: var(--main-bg-color);
-    color: var(--main-text-color);
-    line-height: 1.6;
-    font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  line-height: 1.6;
+  font-size: 16px;
 }
 
-.common-btn{
-    background-color: var(--primary-color);
-    color: var(--secondary-text-color);
-    border-radius: 50px;
-    padding: 10px 20px;
-    cursor: pointer;
-    border: none;
-    transition: var(--main-transition);
-    &:hover{
-        background-color: var(--primary-hover-color);
-    }
-    &:active{
-        transform: scale(0.9);
-    }
+.common-btn {
+  background-color: var(--primary-color);
+  color: var(--secondary-text-color);
+  border-radius: 50px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: var(--main-transition);
+  i {
+    font-size: 13px;
+    margin-right: 4px;
+  }
+  &:hover {
+    background-color: var(--primary-hover-color);
+  }
+  &:active {
+    transform: scale(0.9);
+  }
 }
-
 
 /* Chrome, Safari, Edge, Opera */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none;
-    appearance: none; 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* Firefox */
-input[type=number] {
-    appearance: none;
-    -moz-appearance: textfield;
+input[type="number"] {
+  appearance: none;
+  -moz-appearance: textfield;
 }
+
+// custom scroll bar
+
+// ::-webkit-scrollbar {
+//     width: 10px;
+//     height: 10px;
+//   }
+//   ::-webkit-scrollbar-track {
+//     border: 2px solid #161d29;
+//     border-radius: 10px;
+//   }
+//   ::-webkit-scrollbar-thumb {
+//     background: #2c333f;
+//     border-radius: 10px;
+//   }

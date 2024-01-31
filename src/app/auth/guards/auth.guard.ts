@@ -3,7 +3,7 @@ import {
   ActivatedRouteSnapshot,
   CanActivateFn,
   Router,
-  RouterStateSnapshot,
+  RouterStateSnapshot
 } from '@angular/router';
 import { map, take } from 'rxjs/operators';
 

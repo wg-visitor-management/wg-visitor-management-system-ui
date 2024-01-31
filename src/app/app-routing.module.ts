@@ -7,30 +7,30 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./auth/auth.module').then((module) => module.AuthModule),
+      import('./auth/auth.module').then((module) => module.AuthModule)
   },
   {
     path: 'dashboard/admin',
     loadChildren: () =>
       import('./admin-dashboard/admin-dashboard.module').then(
         (module) => module.AdminDashboardModule
-      ),
+      )
   },
   {
     path: 'dashboard/user',
     loadChildren: () =>
       import('./user-dashboard/user-dashboard.module').then(
         (module) => module.UserDashboardModule
-      ),
+      )
   },
   {
     path: '**',
-    component: PageNotFoundComponent,
-  },
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

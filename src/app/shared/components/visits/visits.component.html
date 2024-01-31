@@ -1,0 +1,258 @@
+<div class="container">
+  <div class="transaction-heading">
+    <div>
+      {{ constants.FILTER_BY_DATE }}
+      <!-- <p-calendar
+          class="date-picker small"
+          [(ngModel)]="selectedDate"
+          (ngModelChange)="handleDateChange()"
+          [maxDate]="tomorrow"
+          placeholder="Select a date"
+        ></p-calendar> -->
+    </div>
+    <div>Add Search bar here</div>
+  </div>
+  <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+  <div class="table-responsive table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{{ constants.NAME }}</th>
+          <th scope="col">{{ constants.ORGANIZATION }}</th>
+          <th scope="col">{{ constants.PHONE_NO }}</th>
+          <th scope="col">{{ constants.DATE }}</th>
+          <th scope="col">{{ constants.CHECK_IN }}</th>
+          <th scope="col">{{ constants.CHECK_OUT }}</th>
+          <th scope="col">{{ constants.PURPOSE }}</th>
+          <th scope="col">{{ constants.TO_MEET }}</th>
+          <th scope="col">{{ constants.COMMENTS }}</th>
+          <th scope="col">{{ constants.ID_CARD }}</th>
+          <th scope="col">{{ constants.CHECKED_IN_BY }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row">
+          <td>John Doe Abhishek sdnfkjdsnfnsd nsfkldnslkf</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe sjkfnsdjfkjsd</td>
+        </tr>
+        <tr scope="row">
+          <td>JohnDoesdnfksndkfnsdsdkjfnkjsd</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <tr scope="row">
+          <td>John Doe</td>
+          <td>XYZ</td>
+          <td>1234567890</td>
+          <td>12/12/2020</td>
+          <td>12:00 PM</td>
+          <td>12:00 PM</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>Meeting</td>
+          <td>John Doe</td>
+          <td>John Doe</td>
+        </tr>
+        <!-- <tr
+            *ngFor="
+              let transaction of transactions
+                | paginate : { itemsPerPage: 10, currentPage: currentPage };
+              let i = index
+            "
+          >
+            <th scope="row">{{ 10 * (currentPage - 1) + (i + 1) }}</th>
+            <td>{{ transaction["account_number"] }}</td>
+            <td>{{ transaction["date_and_time"] | date }}</td>
+            <td>{{ transaction["transaction_type"] }}</td>
+            <td>&#8377; {{ transaction["amount"] }}</td>
+            <td>{{ transaction["done_by"] }}</td>
+          </tr> -->
+      </tbody>
+    </table>
+    <!-- <pagination-controls
+        (pageChange)="currentPage = $event"
+        class="my-pagination"
+      ></pagination-controls> -->
+  </div>
+  <!-- <ng-container>
+    <div class="empty-transactions">
+      <img src="\assets\images\no-data\no-data.svg" alt="empty" />
+      <div class="text-center mt-3">
+        <h3 class="text-center">{{ constants.NO_VISITS_FOUND }}</h3>
+      </div>
+    </div>
+  </ng-container> -->
+</div>

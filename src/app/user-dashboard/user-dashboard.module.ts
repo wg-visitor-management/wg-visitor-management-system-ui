@@ -6,6 +6,6 @@ import { UserDashboardRoutingModule } from './user-dashboard-routing.module';
 
 @NgModule({
   declarations: [UserDashboardComponent],
-  imports: [CommonModule, UserDashboardRoutingModule],
+  imports: [CommonModule, UserDashboardRoutingModule]
 })
 export class UserDashboardModule {}

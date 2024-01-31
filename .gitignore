@@ -41,6 +41,15 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.vscode
 
+# Custom
+.vscode
 extra
+
+package-lock.json
+.dccache
+test-results.xml
+/.scannerwork
+
+.editorconfig
+.prettierrc

@@ -1,0 +1,35 @@
+.container {
+  .transaction-heading {
+    display: flex;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--secondary-text-color);
+    border-radius: 15px;
+    box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    padding: 10px 0px;
+    margin-bottom: 20px;
+    div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .date-picker {
+        margin-left: 20px;
+        padding: 0px;
+      }
+    }
+  }
+  .table-container {
+    height: 70vh;
+    overflow: scroll;
+    .table {
+      > thead > tr > th {
+        min-width: 150px;
+      }
+      > tbody > tr > th {
+        min-width: 150px;
+      }
+    }
+  }
+}

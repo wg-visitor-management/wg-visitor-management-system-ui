@@ -7,8 +7,7 @@ export interface User {
   exp: number;
 }
 
-export class UserModel implements User
- {
+export class UserModel implements User {
   constructor(
     public jwt_token: string,
     public username: string,
