@@ -1,258 +1,147 @@
-<div class="container">
-  <div class="transaction-heading">
-    <div>
-      {{ constants.FILTER_BY_DATE }}
-      <!-- <p-calendar
-          class="date-picker small"
-          [(ngModel)]="selectedDate"
-          (ngModelChange)="handleDateChange()"
-          [maxDate]="tomorrow"
-          placeholder="Select a date"
-        ></p-calendar> -->
-    </div>
-    <div>Add Search bar here</div>
-  </div>
-  <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
-  <div class="table-responsive table-container">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">{{ constants.NAME }}</th>
-          <th scope="col">{{ constants.ORGANIZATION }}</th>
-          <th scope="col">{{ constants.PHONE_NO }}</th>
-          <th scope="col">{{ constants.DATE }}</th>
-          <th scope="col">{{ constants.CHECK_IN }}</th>
-          <th scope="col">{{ constants.CHECK_OUT }}</th>
-          <th scope="col">{{ constants.PURPOSE }}</th>
-          <th scope="col">{{ constants.TO_MEET }}</th>
-          <th scope="col">{{ constants.COMMENTS }}</th>
-          <th scope="col">{{ constants.ID_CARD }}</th>
-          <th scope="col">{{ constants.CHECKED_IN_BY }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr scope="row">
-          <td>John Doe Abhishek sdnfkjdsnfnsd nsfkldnslkf</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe sjkfnsdjfkjsd</td>
-        </tr>
-        <tr scope="row">
-          <td>JohnDoesdnfksndkfnsdsdkjfnkjsd</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <tr scope="row">
-          <td>John Doe</td>
-          <td>XYZ</td>
-          <td>1234567890</td>
-          <td>12/12/2020</td>
-          <td>12:00 PM</td>
-          <td>12:00 PM</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>Meeting</td>
-          <td>John Doe</td>
-          <td>John Doe</td>
-        </tr>
-        <!-- <tr
-            *ngFor="
-              let transaction of transactions
-                | paginate : { itemsPerPage: 10, currentPage: currentPage };
-              let i = index
-            "
-          >
-            <th scope="row">{{ 10 * (currentPage - 1) + (i + 1) }}</th>
-            <td>{{ transaction["account_number"] }}</td>
-            <td>{{ transaction["date_and_time"] | date }}</td>
-            <td>{{ transaction["transaction_type"] }}</td>
-            <td>&#8377; {{ transaction["amount"] }}</td>
-            <td>{{ transaction["done_by"] }}</td>
-          </tr> -->
-      </tbody>
-    </table>
-    <!-- <pagination-controls
-        (pageChange)="currentPage = $event"
-        class="my-pagination"
-      ></pagination-controls> -->
-  </div>
-  <!-- <ng-container>
-    <div class="empty-transactions">
-      <img src="\assets\images\no-data\no-data.svg" alt="empty" />
-      <div class="text-center mt-3">
-        <h3 class="text-center">{{ constants.NO_VISITS_FOUND }}</h3>
+<div class="card">
+  <p-table
+    #dt
+    [value]="visits"
+    [(selection)]="selectedVisit"
+    dataKey="id"
+    [rowHover]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0"
+    [globalFilterFields]="[
+      'name',
+      'ph_number',
+      'organization',
+      'status',
+      'date',
+      'check_in_time',
+      'check_out_time',
+      'status',
+      'to_meet'
+    ]"
+  >
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        Visits
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            (input)="applyFilterGlobal($event, 'contains')"
+            class="p-inputtext p-component p-element"
+            pInputText
+            type="text"
+            placeholder="Global Search"
+          />
+        </span>
       </div>
-    </div>
-  </ng-container> -->
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 4rem">#</th>
+        <th pSortableColumn="name" style="min-width: 10rem">
+          <div class="flex justify-content-between align-items-center">
+            Name
+            <p-sortIcon field="name"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="organization" style="min-width: 10rem">
+          <div class="flex justify-content-between align-items-center">
+            Organisation
+            <p-sortIcon field="organization"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="ph_number" style="min-width: 10rem">
+          <div class="flex justify-content-between align-items-center">
+            Phone
+            <p-sortIcon field="ph_number"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="date" style="min-width: 9rem">
+          <div class="flex justify-content-between align-items-center">
+            Date
+            <p-sortIcon field="date"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="check_in_time" style="min-width: 8rem">
+          <div class="flex justify-content-between align-items-center">
+            In-Time
+            <p-sortIcon field="check_in_time"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="check_out_time" style="min-width: 8rem">
+          <div class="flex justify-content-between align-items-center">
+            Out-Time
+            <p-sortIcon field="check_out_time"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="status" style="min-width: 9rem">
+          <div class="flex justify-content-between align-items-center">
+            Status
+            <p-sortIcon field="status"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="to_meet" style="min-width: 10rem">
+          <div class="flex justify-content-between align-items-center">
+            ToMeet
+            <p-sortIcon field="to_meet"></p-sortIcon>
+          </div>
+        </th>
+        <!-- <th style="width: 5rem"></th> -->
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-visit let-rowIndex="rowIndex">
+      <tr class="p-selectable-row">
+        <td>
+          {{ rowIndex + 1 }}
+        </td>
+        <td>
+          <span class="p-column-title">Name</span>
+          {{ visit.name }}
+        </td>
+        <td>
+          <span class="p-column-title">Organization</span>
+          <span class="ml-1 vertical-align-middle">{{
+            visit.organization
+          }}</span>
+        </td>
+        <td>
+          <span class="p-column-title">Phone</span>
+          <span class="ml-1 vertical-align-middle">{{ visit.ph_number }}</span>
+        </td>
+        <td>
+          <span class="p-column-title">Date</span>
+          {{ visit.date | date : "MM/dd/yyyy" }}
+        </td>
+        <td>
+          <span class="p-column-title">In Time</span>
+          {{ visit.check_in_time }}
+        </td>
+
+        <td>
+          <span class="p-column-title">Out Time</span>
+          {{ visit.check_out_time }}
+        </td>
+        <td>
+          <span class="p-column-title">Status</span>
+          <p-tag
+            [value]="visit.status"
+            [severity]="getSeverity(visit.status) || undefined"
+          ></p-tag>
+        </td>
+        <td>
+          <span class="p-column-title">To Meet</span>
+          {{ visit.to_meet }}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="9" class="text-center">No customers found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
