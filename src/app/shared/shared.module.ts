@@ -8,11 +8,12 @@ import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
+import { CalendarModule } from 'primeng/calendar';
 
-import { VisitsComponent } from './components/visits/visits.component';
+import { VisitTableComponent } from './components/visit-table/visit-table.component';
 
 @NgModule({
-  declarations: [VisitsComponent],
+  declarations: [VisitTableComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -21,8 +22,19 @@ import { VisitsComponent } from './components/visits/visits.component';
     TagModule,
     RatingModule,
     ProgressBarModule,
-    ToastModule
+    ToastModule,
+    CalendarModule
   ],
-  exports: [VisitsComponent]
+  exports: [
+    VisitTableComponent,
+    FormsModule,
+    ButtonModule,
+    TableModule,
+    TagModule,
+    RatingModule,
+    ProgressBarModule,
+    ToastModule,
+    CalendarModule
+  ]
 })
 export class SharedModule {}

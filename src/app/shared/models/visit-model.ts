@@ -11,4 +11,6 @@ export interface Visit {
   id_card: string;
   checked_in_by: string;
   status: string;
+  approved_by?: string;
+  approval_time?: string;
 }

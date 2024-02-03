@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card card-table">
   <p-table
     #dt
     [value]="visits"
@@ -7,7 +7,6 @@
     [rowHover]="true"
     [rows]="10"
     [showCurrentPageReport]="true"
-    [rowsPerPageOptions]="[10, 25, 50]"
     [loading]="loading"
     [paginator]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -27,16 +26,36 @@
     <ng-template pTemplate="caption">
       <div class="table-header">
         Visits
-        <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
-          <input
-            (input)="applyFilterGlobal($event, 'contains')"
-            class="p-inputtext p-component p-element"
-            pInputText
-            type="text"
-            placeholder="Global Search"
-          />
-        </span>
+        <div class="right-part">
+          <div class="card flex justify-content-center">
+            <p-calendar
+              [(ngModel)]="rangeDates"
+              selectionMode="range"
+              [readonlyInput]="true"
+              placeholder="Select a Date Range"
+            ></p-calendar>
+          </div>
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input
+              (input)="applyFilterGlobal($event, 'contains')"
+              class="p-inputtext p-component p-element"
+              pInputText
+              type="text"
+              placeholder="Global Search"
+            />
+          </span>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file-pdf"
+            (click)="exportPdf()"
+            class="p-button-warning mr-2 print-pdf-btn"
+            pTooltip="PDF"
+            tooltipPosition="bottom"
+          ></button>
+        </div>
       </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -90,7 +109,6 @@
             <p-sortIcon field="to_meet"></p-sortIcon>
           </div>
         </th>
-        <!-- <th style="width: 5rem"></th> -->
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-visit let-rowIndex="rowIndex">
