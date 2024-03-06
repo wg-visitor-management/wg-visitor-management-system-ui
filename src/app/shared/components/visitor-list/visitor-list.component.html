@@ -1,0 +1,179 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+
+<div class="search">
+  <span class="p-input-icon-left search-bar-container">
+    <i class="pi pi-search"></i>
+    <input
+      type="text"
+      class="search-bar form-control"
+      pInputText
+      [(ngModel)]="searchValue"
+      placeholder="{{ visitorConstants.SEARCH_FOR_NAME }}"
+    />
+    <i
+      class="fas fa-times reset-search"
+      (click)="searchValue = ''"
+      [hidden]="!searchValue"
+    ></i>
+  </span>
+
+  <button
+    type="submit"
+    class="common-btn"
+    (click)="onSearch()"
+    [disabled]="
+      searchValue &&
+      !searchValue.match('[a-zA-Z]+') &&
+      searchValue.trim() !== ''
+    "
+  >
+    <i class="fas fa-search"></i>
+    {{ visitorConstants.SEARCH }}
+  </button>
+</div>
+
+<div class="card">
+  <p-table
+    #visitorListTable
+    [value]="visitors"
+    [(selection)]="selectedVisitor"
+    dataKey="visitorId"
+    [rowHover]="true"
+    [rows]="10"
+    [loading]="loading"
+  >
+    <ng-template pTemplate="loadingbody">
+      <tr *ngFor="let _ of [].constructor(3)" height="45px">
+        <td *ngFor="let _ of [].constructor(7)">
+          <p-skeleton
+            width="90%"
+            height="1rem"
+            borderRadius="16px"
+          ></p-skeleton>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="header" class="p-3">
+      <tr>
+        <th pSortableColumn="firstName" class="width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ visitorConstants.FNAME }}
+            <p-sortIcon field="firstName"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="lastName" class="width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ visitorConstants.LNAME }}
+            <p-sortIcon field="lastName"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="phoneNumber" class="width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ visitorConstants.PHONE }}
+            <p-sortIcon field="phoneNumber"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="organization" class="width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ visitorConstants.ORGANIZATION }}
+            <p-sortIcon field="organization"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="email" class="width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ visitorConstants.EMAIL }}
+            <p-sortIcon field="email"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="address" class="width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ visitorConstants.ADDRESS }}
+            <p-sortIcon field="address"></p-sortIcon>
+          </div>
+        </th>
+        <th style="width: 7rem" class="text-center">
+          <div class="flex justify-content-between align-items-center">
+            {{ visitorConstants.DETAILS }}
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-visitor>
+      <tr class="p-selectable-row">
+        <td style="padding-left: 20px; max-width: 10rem; word-wrap: break-word">
+          <span class="p-column-title">{{ visitorConstants.FNAME }}</span>
+          {{ visitor.firstName | titlecase }}
+        </td>
+        <td class="wrap-width-10">
+          <span class="p-column-title">{{ visitorConstants.LNAME }}</span>
+          <span class="ml-1 vertical-align-middle">{{
+            visitor.lastName | titlecase | emptyValue
+          }}</span>
+        </td>
+        <td>
+          <span class="p-column-title">{{ visitorConstants.PHONE }}</span>
+          <span class="ml-1 vertical-align-middle">{{
+            visitor.phoneNumber
+          }}</span>
+        </td>
+        <td class="wrap-width-10">
+          <span class="p-column-title">{{
+            visitorConstants.ORGANIZATION
+          }}</span>
+          <span class="ml-1 vertical-align-middle">{{
+            visitor.organization | titlecase
+          }}</span>
+        </td>
+        <td class="wrap-width-10">
+          <span class="p-column-title">{{ visitorConstants.EMAIL }}</span>
+          <span class="ml-1 vertical-align-middle">{{
+            visitor.email | emptyValue
+          }}</span>
+        </td>
+        <td class="wrap-width-10">
+          <span class="p-column-title">{{ visitorConstants.ADDRESS }}</span>
+          <span class="ml-1 vertical-align-middle">{{
+            visitor.address | titlecase | emptyValue
+          }}</span>
+        </td>
+        <td class="text-center">
+          <span class="p-column-title">{{ visitorConstants.ACTIONS }}</span>
+          <span class="ml-1 vertical-align-middle">
+            <button class="btn" (click)="viewVisitor(visitor)">
+              <i class="fa fa-eye"></i>
+            </button>
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8" class="text-center">
+          {{ visitorConstants.NO_VISITORS_FOUND }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-scrollTop
+    target="window"
+    [threshold]="1"
+    class="arrow-up-icon"
+    icon="pi pi-arrow-up"
+  >
+    <i class="arrow-up-icon pi pi-arrow-up"></i>
+  </p-scrollTop>
+
+  <div
+    class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="95"
+    (scrolled)="
+      nextPageToken !== null && !loadingMoreVisitors ? loadMoreVisitors() : null
+    "
+  ></div>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,159 @@
+th {
+  text-align: start;
+}
+td,
+th {
+  padding: 0.8rem 0.8rem;
+  font-size: 0.9rem !important;
+}
+.right-part {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.card-table {
+  margin: 2% 5%;
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+}
+
+:host ::ng-deep {
+  .p-paginator {
+    .p-paginator-current {
+      margin-left: auto;
+    }
+  }
+
+  .p-progressbar {
+    background-color: #d8dadc;
+
+    .p-progressbar-value {
+      background-color: #607d8b;
+    }
+  }
+
+  .table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .p-calendar .p-datepicker {
+    min-width: 25rem;
+
+    td {
+      font-weight: 400;
+    }
+  }
+
+  .p-datatable.p-datatable-customers {
+    .p-datatable-header {
+      padding: 1rem;
+      text-align: left;
+      font-size: 1.5rem;
+    }
+
+    .p-paginator {
+      padding: 1rem;
+    }
+
+    .p-datatable-thead > tr > th {
+      text-align: left;
+    }
+
+    .p-datatable-tbody > tr > td {
+      cursor: auto;
+    }
+
+    .p-dropdown-label:not(.p-placeholder) {
+      text-transform: uppercase;
+    }
+  }
+
+  .p-w-100 {
+    width: 100%;
+  }
+
+  /* Responsive */
+  .p-datatable-customers .p-datatable-tbody > tr > td .p-column-title {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  :host ::ng-deep {
+    .p-datatable {
+      &.p-datatable-customers {
+        .p-datatable-thead > tr > th,
+        .p-datatable-tfoot > tr > td {
+          display: none !important;
+        }
+
+        .p-datatable-tbody > tr {
+          border-bottom: 1px solid var(--layer-2);
+
+          > td {
+            text-align: left;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            border: 0 none;
+
+            .p-column-title {
+              min-width: 30%;
+              display: inline-block;
+              font-weight: bold;
+            }
+
+            p-progressbar {
+              width: 100%;
+            }
+
+            &:last-child {
+              border-bottom: 1px solid var(--surface-d);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .ng-tns-c419082668-0 .p-calendar {
+    width: 100% !important;
+  }
+  .table-header {
+    div {
+      width: 100%;
+    }
+    span {
+      width: 100%;
+    }
+
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .right-part {
+    div {
+      span {
+        width: 100% !important;
+      }
+    }
+    input {
+      width: 100%;
+    }
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.p-tag.p-tag-danger {
+  background-color: pink;
+  color: black;
+}
+
+p-tag[severity="warning"] {
+  background-color: lightyellow;
+  color: pink;
+}

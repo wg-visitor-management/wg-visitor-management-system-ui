@@ -1,0 +1,8 @@
+<div
+  class="wg-loader-container flex flex-column justify-content-center p-dialog-mask p-component-overlay p-component-overlay-enter p-dialog-mask-scrollblocker spinner-backgroud"
+  [ngStyle]="{ display: isSpinnerVisible ? 'flex' : 'none' }"
+>
+  <div class="p-progress-spinner-svg custom-spinner">
+    <img [src]="imageUrl" class="image loaderImage" alt="Loading..." />
+  </div>
+</div>

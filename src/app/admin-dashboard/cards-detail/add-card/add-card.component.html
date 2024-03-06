@@ -1,0 +1,38 @@
+<form #cardForm="ngForm">
+  <input
+    type="text"
+    id="card"
+    name="card"
+    required
+    ngModel
+    #addCard="ngModel"
+    pattern="^[A-Za-z0-9]+$"
+    class="form-control"
+    placeholder="{{ addCardConstant.CARD_INPUT_PLACEHOLDER }}"
+  />
+  <small
+    *ngIf="addCard.invalid && addCard.touched && !addCard.errors?.['required']"
+    >{{ addCardConstant.CARD_INVALID }}</small
+  >
+  <small *ngIf="addCard.touched && addCard.errors?.['required']">{{
+    addCardConstant.CARD_REQUIRED
+  }}</small>
+
+  <div class="btns">
+    <button type="submit" class="common-btn" (click)="closePopUp('cancel')">
+      <i class="fa-solid fa-times"></i>
+
+      {{ addCardConstant.CANCEL }}
+    </button>
+    <button
+      type="submit"
+      class="common-btn save-btn ms-2"
+      [disabled]="!whileSubmitting || cardForm.pristine || cardForm.invalid"
+      (click)="onSubmit()"
+    >
+      <i class="fa-solid fa-check"></i>
+
+      {{ addCardConstant.SAVE }}
+    </button>
+  </div>
+</form>

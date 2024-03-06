@@ -1,0 +1,25 @@
+input{
+  padding: .5rem .7rem !important;
+
+}
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+.btns {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .sbmt {
+    color: white;
+    background-color: #cd1a1a;
+  }
+
+  .sbmt:hover {
+    background-color: #ae0000;
+  }
+}
+small {
+  color: red;
+}

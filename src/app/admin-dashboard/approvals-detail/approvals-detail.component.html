@@ -1,0 +1,168 @@
+<div class="card card-table">
+  <p-table
+    #approvalTable
+    [value]="visits"
+    dataKey="id"
+    [rowHover]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0"
+    [loading]="loading"
+    [globalFilterFields]="fieldsToFilter"
+  >
+    <ng-template pTemplate="loadingbody">
+      <tr *ngFor="let _ of [].constructor(10)" height="45px">
+        <td *ngFor="let _ of [].constructor(8)">
+          <p-skeleton
+            width="90%"
+            height="1rem"
+            borderRadius="16px"
+          ></p-skeleton>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        <div class="right-part ms-auto">
+          <div class="card flex justify-content-center">
+            <p-calendar
+              [(ngModel)]="rangeDates"
+              selectionMode="range"
+              [readonlyInput]="true"
+              placeholder="{{ constants.SELECT_DATE_RANGE }}"
+              (onSelect)="onDateSelect()"
+              [maxDate]="maxDate"
+              #calendar
+            >
+              <ng-template pTemplate="footer">
+                <button class="common-btn" (click)="clearCalendar()">
+                  {{ constants.CLEAR }}
+                </button>
+              </ng-template></p-calendar
+            >
+          </div>
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input
+              (input)="applyFilterGlobal($event, 'contains')"
+              class="p-inputtext p-component p-element"
+              pInputText
+              type="text"
+              placeholder="{{ constants.SEARCH }}"
+            />
+          </span>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name" class="width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ constants.NAME }}
+            <p-sortIcon field="name"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="organization" class="width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ constants.ORGANIZATION }}
+            <p-sortIcon field="organization"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="phNumber" class="text-center width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ constants.PHONE }}
+            <p-sortIcon field="phNumber"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="date" class="text-center width-9">
+          <div class="flex justify-content-between align-items-center">
+            {{ constants.DATE }}
+            <p-sortIcon field="date"></p-sortIcon>
+          </div>
+        </th>
+
+        <th pSortableColumn="approvalStatus" class="text-center width-9">
+          <div class="flex justify-content-between align-items-center">
+            {{ constants.STATUS }}
+            <p-sortIcon field="approvalStatus"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="toMeet" class="width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ constants.toMeet }}
+            <p-sortIcon field="toMeet"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="approvedBy" class="width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ constants.APPROVED_BY }}
+            <p-sortIcon field="approvedBy"></p-sortIcon>
+          </div>
+        </th>
+
+        <th pSortableColumn="approvalTime" class="text-center width-10">
+          <div class="flex justify-content-between align-items-center">
+            {{ constants.APPROVAL_TIME }}
+            <p-sortIcon field="approvalTime"></p-sortIcon>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-visit let-rowIndex="rowIndex">
+      <tr class="p-selectable-row">
+        <td class="wrap-width-10">
+          <span class="p-column-title">{{ constants.NAME }}</span>
+          {{ visit.name | titlecase }}
+        </td>
+        <td class="wrap-width-10">
+          <span class="p-column-title">{{ constants.ORGANIZATION }}</span>
+          <span class="ml-1 vertical-align-middle">{{
+            visit.organization | titlecase
+          }}</span>
+        </td>
+        <td class="text-center">
+          <span class="p-column-title">{{ constants.PHONE }}</span>
+          <span class="ml-1 vertical-align-middle">{{ visit.phNumber }}</span>
+        </td>
+        <td class="text-center">
+          <span class="p-column-title">Date</span>
+          {{ visit.date | date : "MM/dd/yyyy" }}
+        </td>
+        <td class="text-center">
+          <span class="p-column-title">{{ constants.STATUS }}</span>
+          <p-tag [severity]="getSeverity(visit.approvalStatus)">
+            {{
+              visit.approvalStatus ? (visit.approvalStatus | uppercase) : "N/A"
+            }}</p-tag
+          >
+        </td>
+        <td class="wrap-width-10">
+          <span class="p-column-title">{{ constants.toMeet }}</span>
+          {{ visit.toMeet | titlecase }}
+        </td>
+        <td class="wrap-width-10">
+          <span class="p-column-title">{{ constants.APPROVED_BY }}</span>
+          {{ visit.approvedBy | emptyValue }}
+        </td>
+        <td class="text-center" s>
+          <span class="p-column-title">{{ constants.APPROVAL_TIME }}</span>
+          <div *ngIf="visit.approvalTime; else templateName">
+            {{ visit.approvalTime | addTimezoneOffset }}
+          </div>
+          <ng-template #templateName>
+            {{ "" | emptyValue }}
+          </ng-template>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="9" class="text-center">
+          {{ constants.NO_APPROVALS_FOUND }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

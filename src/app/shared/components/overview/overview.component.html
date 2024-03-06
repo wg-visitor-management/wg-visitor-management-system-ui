@@ -1,0 +1,47 @@
+<div class="overview">
+  <div class="heading">{{ contants.OVERVIEW_HEADING }}</div>
+
+  <div class="details">
+    <table *ngIf="!isLoading; else tableSkeleton">
+      <tr>
+        <td colspan="2" class="text-center">
+          <strong>{{ todayDay }}, {{ todayDate | date }}</strong>
+        </td>
+      </tr>
+      <tr>
+        <td>{{ contants.CURRENTLY_VISITING }}</td>
+        <td>{{ currentVisitors }}</td>
+      </tr>
+      <tr>
+        <td>{{ contants.TODAY_VISITS }}</td>
+        <td>{{ totalVisits }}</td>
+      </tr>
+      <tr>
+        <td>{{ contants.PENDING_APPROVAL }}</td>
+        <td>{{ pendingVisits }}</td>
+      </tr>
+      <tr>
+        <td>{{ contants.REJECTED_APPROVAL }}</td>
+        <td>{{ rejectedVisits }}</td>
+      </tr>
+    </table>
+
+    <ng-template #tableSkeleton>
+      <table>
+        <tr>
+          <td colspan="2" class="text-center">
+            <strong>{{ todayDay }}, {{ todayDate | date }}</strong>
+          </td>
+        </tr>
+        <tr *ngFor="let _ of [].constructor(4)">
+          <td width="80%">
+            <p-skeleton></p-skeleton>
+          </td>
+          <td>
+            <p-skeleton></p-skeleton>
+          </td>
+        </tr>
+      </table>
+    </ng-template>
+  </div>
+</div>

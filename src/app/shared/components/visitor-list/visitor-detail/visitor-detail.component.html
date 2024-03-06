@@ -1,0 +1,296 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable-next-line @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/elements-content -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<div class="container mt-3">
+  <div class="left-side">
+    <div
+      *ngIf="!loading"
+      class="back-btn"
+      (click)="backToDashboard()"
+      tabindex="0"
+      title="back"
+    >
+      <i class="fa-solid fa-arrow-left"></i>
+    </div>
+  </div>
+
+  <div class="rightside">
+    <div class="upper" *ngIf="!loading">
+      <div class="visitor-details">
+        <div class="sub-heading">
+          {{ visitorConstants.DETAILS }}
+          <span class="edit-details"> </span>
+        </div>
+        <table>
+          <tr>
+            <td class="detail-heading">
+              {{ visitorConstants.NAME }}
+            </td>
+            <td class="wrap-width-10">
+              {{ (visitor.firstName ? visitor.firstName : "") | titlecase }}
+              {{ visitor.lastName }}
+            </td>
+          </tr>
+          <tr>
+            <td class="detail-heading">
+              {{ visitorConstants.EMAIL }}
+            </td>
+            <td class="wrap-width-10">
+              {{ visitor.email | emptyValue }}
+            </td>
+          </tr>
+          <tr>
+            <td class="detail-heading">
+              {{ visitorConstants.PHONE }}
+            </td>
+            <td>{{ visitor.phoneNumber }}</td>
+          </tr>
+          <tr>
+            <td class="detail-heading">
+              {{ visitorConstants.ADDRESS | titlecase }}
+            </td>
+            <td class="wrap-width-10">
+              {{ visitor.address | emptyValue }}
+            </td>
+          </tr>
+          <tr>
+            <td class="detail-heading">
+              {{ visitorConstants.ORGANIZATION | titlecase }}
+            </td>
+            <td class="wrap-width-10">
+              {{ visitor.organization }}
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <div class="photo">
+          <div class="sub-heading">
+            {{ visitorConstants.PROFILE }}
+          </div>
+          <img
+            [src]="ProfileImageSource"
+            *ngIf="profileImageLoaded; else loading1"
+            alt="Profile Image"
+          />
+
+          <ng-template #loading1>
+            <div class="text-center d-flex justify-content-center">
+              <div
+                class="spinner-border d-flex justify-content-center align-items-center"
+                role="status"
+              >
+                <span class="visually-hidden">{{
+                  visitorConstants.LOADING
+                }}</span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div class="govern-id">
+        <div class="sub-heading">
+          {{ visitorConstants.GOVENRMENT_ID }}
+        </div>
+        <img
+          [src]="cardImageSource"
+          *ngIf="cardImageLoaded; else loading2"
+          alt="Card Image"
+        />
+        <ng-template #loading2>
+          <div class="text-center d-flex justify-content-center">
+            <div
+              class="spinner-border d-flex justify-content-center align-items-center"
+              role="status"
+            >
+              <span class="visually-hidden">{{
+                visitorConstants.LOADING
+              }}</span>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="lower" *ngIf="!loading">
+      <div class="card card-table mb-5">
+        <p-table
+          #visitorDetailTable
+          [value]="visits"
+          [(selection)]="selectedVisit"
+          dataKey="id"
+          [rowHover]="true"
+          [rows]="10"
+          [columns]="cols"
+          [showCurrentPageReport]="true"
+          [loading]="isTableLoading"
+          [paginator]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [filterDelay]="0"
+          [globalFilterFields]="fieldsToFilter"
+        >
+          <ng-template pTemplate="loadingbody">
+            <tr *ngFor="let _ of [].constructor(5)" height="45px">
+              <td *ngFor="let _ of [].constructor(7)">
+                <p-skeleton
+                  width="90%"
+                  height="1rem"
+                  borderRadius="16px"
+                ></p-skeleton>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="caption">
+            <div class="table-header p-2">
+              {{ visitorConstants.VISITS }}
+              <div class="right-part">
+                <span class="p-input-icon-left">
+                  <i class="pi pi-search"></i>
+                  <input
+                    (input)="applyFilterGlobal($event, 'contains')"
+                    class="p-inputtext p-component p-element"
+                    pInputText
+                    type="text"
+                    placeholder="Search"
+                  />
+                </span>
+                <p-splitButton
+                  class="split-btn"
+                  icon="pi pi-refresh"
+                  [model]="exportItems"
+                  (onClick)="refreshVisits()"
+                >
+                  <ng-template pTemplate="dropdownicon">
+                    <i class="pi pi-download"></i> </ng-template
+                ></p-splitButton>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="purpose" class="width-10">
+                <div class="flex justify-content-between align-items-center">
+                  {{ visitorConstants.PURPOSE }}
+                  <p-sortIcon field="purpose"></p-sortIcon>
+                </div>
+              </th>
+              <th pSortableColumn="toMeet" class="width-10">
+                <div class="flex justify-content-between align-items-center">
+                  {{ visitorConstants.TO_MEET }}
+                  <p-sortIcon field="toMeet"></p-sortIcon>
+                </div>
+              </th>
+              <th pSortableColumn="comments" class="width-10">
+                <div class="flex justify-content-between align-items-center">
+                  {{ visitorConstants.COMMENTS }}
+                  <p-sortIcon field="comments"></p-sortIcon>
+                </div>
+              </th>
+
+              <th pSortableColumn="date" class="text-center width-9">
+                <div class="flex justify-content-between align-items-center">
+                  {{ visitorConstants.DATE }}
+                  <p-sortIcon field="date"></p-sortIcon>
+                </div>
+              </th>
+              <th pSortableColumn="checkInTime" class="width-8">
+                <div
+                  class="flex justify-content-between align-items-center"
+                  class="text-center"
+                >
+                  {{ visitorConstants.IN_TIME }}
+                  <p-sortIcon field="checkInTime"></p-sortIcon>
+                </div>
+              </th>
+              <th pSortableColumn="checkOutTime" class="width-8">
+                <div
+                  class="flex justify-content-between align-items-center"
+                  class="text-center"
+                >
+                  {{ visitorConstants.OUT_TIME }}
+                  <p-sortIcon field="checkOutTime"></p-sortIcon>
+                </div>
+              </th>
+              <th pSortableColumn="status" class="width-9">
+                <div
+                  class="flex justify-content-between align-items-center"
+                  class="text-center"
+                >
+                  {{ visitorConstants.STATUS }}
+                  <p-sortIcon field="status"></p-sortIcon>
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-visit let-rowIndex="rowIndex">
+            <tr class="p-selectable-row">
+              <td class="wrap-width-10">
+                <span class="p-column-title">{{
+                  visitorConstants.PURPOSE
+                }}</span>
+                {{ visit.purpose }}
+              </td>
+              <td class="wrap-width-10">
+                <span class="p-column-title">{{
+                  visitorConstants.TO_MEET
+                }}</span>
+                {{ visit.toMeet }}
+              </td>
+              <td class="wrap-width-10">
+                <span class="p-column-title">{{
+                  visitorConstants.COMMENTS
+                }}</span>
+                <span class="ml-1 vertical-align-middle">{{
+                  visit.comments | emptyValue
+                }}</span>
+              </td>
+              <td class="text-center">
+                <span class="p-column-title">{{ visitorConstants.DATE }}</span>
+                {{ visit.date | date : "MM/dd/yyyy" }}
+              </td>
+              <td class="text-center">
+                <span class="p-column-title">{{
+                  visitorConstants.IN_TIME
+                }}</span>
+                {{ visit.date + "T" + visit.checkInTime | addTimezoneOffset }}
+              </td>
+
+              <td class="text-center">
+                <span class="p-column-title">{{
+                  visitorConstants.OUT_TIME
+                }}</span>
+                <div *ngIf="visit.checkOutTime; else templateName">
+                  {{ visit.checkOutTime | addTimezoneOffset }}
+                </div>
+                <ng-template #templateName>
+                  {{ "-" }}
+                </ng-template>
+              </td>
+              <td class="text-center">
+                <span class="p-column-title">{{
+                  visitorConstants.STATUS
+                }}</span>
+                <p-tag
+                  [severity]="getSeverity(visit.approvalStatus) || undefined"
+                >
+                  {{
+                    visit.approvalStatus
+                      ? (visit.approvalStatus | uppercase)
+                      : "N/A"
+                  }}</p-tag
+                >
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="9" class="text-center">
+                {{ visitorConstants.NO_VISITS_FOUND }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>
