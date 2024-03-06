@@ -1,0 +1,29 @@
+.navbar {
+  .container-fluid {
+    margin: 0 20px;
+    .navbar-brand {
+      img {
+        height: 50px;
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+}
+.active {
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  color: var(--primary-color) !important;
+  font-weight: bold;
+}
+.username-logout-container {
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 960px) {
+  .username-logout-container {
+    border-top: 1px solid grey;
+    padding-top: 10px;
+  }
+}

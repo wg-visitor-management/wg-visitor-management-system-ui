@@ -1,0 +1,140 @@
+<!-- eslint-disable @angular-eslint/template/elements-content -->
+<div class="container">
+  <div class="upper-part"></div>
+  <div class="lower-part">
+    <div class="card">
+      <p-table
+        #cardDetailTable
+        [value]="cards"
+        dataKey="id"
+        [rowHover]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="0"
+        [globalFilterFields]="fieldsToFilter"
+      >
+        <ng-template pTemplate="caption">
+          <div class="table-header">
+            <div class="table-fields ms-auto">
+              <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input
+                  (input)="applyFilterGlobal($event, 'contains')"
+                  class="p-inputtext p-component p-element"
+                  pInputText
+                  type="text"
+                  placeholder="{{ addCardConstants.SEARCH }}"
+                />
+              </span>
+              <span>
+                <button class="open-dialog common-btn" (click)="openDialog()">
+                  <i class="pi pi-plus"></i>
+                  {{ addCardConstants.ADD_CARD }}
+                </button>
+              </span>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="card_id" class="width-10">
+              <div
+                class="flex justify-content-between align-items-center text-center"
+              >
+                {{ addCardConstants.CARD_NO }}
+                <p-sortIcon field="card_id"></p-sortIcon>
+              </div>
+            </th>
+
+            <th pSortableColumn="cardStatus" class="width-9">
+              <div
+                class="flex justify-content-between align-items-center text-center"
+              >
+                {{ addCardConstants.STATUS }}
+                <p-sortIcon field="cardStatus"></p-sortIcon>
+              </div>
+            </th>
+            <th pSortableColumn="action" class="width-9">
+              <div
+                class="flex justify-content-between align-items-center text-center"
+              >
+                {{ addCardConstants.ACTION }}
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-card>
+          <tr class="p-selectable-row">
+            <td class="text-center">
+              {{ card.card_id }}
+            </td>
+
+            <td class="text-center">
+              <p-tag [severity]="getSeverity(card.cardStatus) || undefined">{{
+                card.cardStatus | uppercase
+              }}</p-tag>
+            </td>
+
+            <td class="text-center">
+              <button
+                (click)="confirm(card.card_id)"
+                class="common-btn"
+                [disabled]="card.cardStatus === 'occupied' || whileSubmitting"
+              >
+                <i class="pi pi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="9" class="text-center">
+              {{ addCardConstants.NO_CARD_FOUND }}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+<div class="flex justify-content-center">
+  <p-dialog
+    header="Add new card"
+    [(visible)]="visible"
+    [modal]="true"
+    [style]="{ width: '400px' }"
+    [draggable]="false"
+    [resizable]="false"
+    position="center"
+  >
+    <app-add-card
+      *ngIf="visible"
+      (closeCardPopUp)="closePopUp($event)"
+    ></app-add-card>
+  </p-dialog>
+</div>
+
+<p-confirmDialog #confirmationDialog [style]="{ width: '400px' }">
+  <ng-template pTemplate="footer">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      label="Yes"
+      class="common-btn save-btn me-2"
+      (click)="confirmationDialog.accept()"
+    ></button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      label="No"
+      class="common-btn"
+      (click)="confirmationDialog.reject()"
+    ></button>
+  </ng-template>
+</p-confirmDialog>

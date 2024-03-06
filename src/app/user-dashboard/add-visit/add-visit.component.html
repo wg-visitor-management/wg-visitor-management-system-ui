@@ -1,0 +1,271 @@
+<div class="visits">
+  <div class="heading">
+    <button type="button" class="common-btn" (click)="addVisitor()">
+      <i class="fas fa-user-plus"></i>
+      {{ addVisitConstants.ADD_VISITOR }}
+    </button>
+    <div class="search">
+      <div class="flex justify-content-center search-container">
+        <p-autoComplete
+          [(ngModel)]="searchPlaceHolderValue"
+          [suggestions]="suggestions"
+          (completeMethod)="search($event)"
+          field="label"
+          (onSelect)="onItemSelect()"
+          placeholder="{{ addVisitConstants.SEARCH_VISITOR_BY_NAME }}"
+          emptyMessage="No visitors found!"
+          [showEmptyMessage]="!!suggestions && !liveSearchLoader"
+        >
+          <ng-template pTemplate="header">
+            <div *ngIf="liveSearchLoader">
+              <div class="text-center d-flex justify-content-center">
+                <div
+                  class="spinner-border d-flex justify-content-center align-items-center mt-4"
+                  role="status"
+                ></div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template class="search-result" let-visitor pTemplate="item">
+            <i
+              *ngIf="visitor.phoneNumber"
+              class="me-2 fa-solid fa-user wrap-width-8"
+            ></i
+            >{{ visitor.firstName | titlecase }}
+            {{ visitor.lastName | titlecase }}
+
+            <i
+              *ngIf="visitor.phoneNumber"
+              class="ms-2 me-2 fa-solid fa-mobile-screen"
+            ></i
+            >{{ visitor.phoneNumber }}
+          </ng-template>
+        </p-autoComplete>
+        <i class="fa-solid fa-search search-icon"></i>
+      </div>
+    </div>
+  </div>
+  <div class="add-visit">
+    <div class="add-visit-overlay" *ngIf="!visitor">
+      <div class="text-img-container">
+        <img src="assets\images\add-visit\people_search.svg" alt="" />
+        <p>{{ addVisitConstants.OVERLAY_MSG }}</p>
+      </div>
+    </div>
+    <div class="user-detail">
+      <img
+        class="user-logo"
+        *ngIf="visitor; else noVisitor"
+        [src]="visitor.profilePictureUrl"
+        alt="user logo"
+      />
+      <ng-template #noVisitor>
+        <img
+          class="user-logo"
+          src="assets\images\visit\visit-profile.png"
+          alt="user logo"
+        />
+      </ng-template>
+      <div class="user-info" *ngIf="visitor; else noVisitorDetail">
+        <table>
+          <tr>
+            <td class="user-heading">{{ addVisitConstants.NAME }}</td>
+            <td class="wrap-width-10">
+              {{ visitor.firstName }} {{ visitor.lastName }}
+            </td>
+          </tr>
+          <tr>
+            <td class="user-heading">{{ addVisitConstants.PHONE }}</td>
+            <td>{{ visitor.phoneNumber }}</td>
+          </tr>
+          <tr>
+            <td class="user-heading">{{ addVisitConstants.ORGANIZATION }}</td>
+            <td class="wrap-width-10" colspan="2">
+              {{ visitor.organization }}
+            </td>
+          </tr>
+        </table>
+      </div>
+      <ng-template #noVisitorDetail>
+        <p>{{ addVisitConstants.SEARCH_TO_ADD_VISIT }}</p>
+      </ng-template>
+    </div>
+
+    <form class="form-styling" #visitForm="ngForm">
+      <div class="add-visit-form">
+        <div class="user-info">
+          <div class="add-id-card d-flex flex-column select-type">
+            <i class="fa-solid fa-id-card-clip"></i>
+            <select
+              name="idCard"
+              id=""
+              class="form-select"
+              ngModel
+              required
+              [disabled]="disableForm"
+              #idCard="ngModel"
+            >
+              <option value="" disabled selected hidden>Select Id card</option>
+              <option value="" disabled *ngIf="(cards | async)?.length === 0">
+                {{ addVisitConstants.NO_CARDS_AVAILABLE }}
+              </option>
+              <option *ngFor="let card of cards | async" [value]="card.card_id">
+                {{ card.card_id }}
+              </option>
+            </select>
+            <small *ngIf="idCard.invalid && idCard.touched">{{
+              addVisitConstants.ID_CARD_REQ
+            }}</small>
+          </div>
+
+          <div class="select-visit-type select-type d-flex flex-column">
+            <i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i>
+            <select
+              ngModel
+              class="form-select"
+              id="visit-type"
+              name="visitType"
+              required
+              [disabled]="disableForm"
+              #visitType="ngModel"
+            >
+              <option value="" disabled selected hidden>
+                Select visit type
+              </option>
+              <option value="inside_office">
+                {{ addVisitConstants.INSIDE_OFFICE }}
+              </option>
+              <option value="outside_office">
+                {{ addVisitConstants.OUTSIDE_OFFICE }}
+              </option>
+            </select>
+            <small *ngIf="visitType.invalid && visitType.touched">{{
+              addVisitConstants.VISIT_TYPE_REQ
+            }}</small>
+          </div>
+        </div>
+
+        <div class="toMeet">
+          <span class="p-float-label">
+            <i class="icon fas fa-user-friends"></i>
+            <input
+              type="text"
+              ngModel
+              class="form-control"
+              placeholder="{{ addVisitConstants.TO_MEET }}"
+              name="toMeet"
+              #toMeet="ngModel"
+              pattern="^(?! )[a-zA-Z ]{1,}"
+              minlength="1"
+              maxlength="30"
+              required
+              [disabled]="disableForm"
+            />
+          </span>
+
+          <small
+            *ngIf="toMeet.invalid && toMeet.touched  && toMeet.errors?.['required']"
+            >{{ addVisitConstants.TO_MEET_REQ }}</small
+          >
+          <small
+            *ngIf="toMeet.invalid && toMeet.touched && !toMeet.errors?.['required']"
+          >
+            {{ addVisitConstants.TO_MEET_INVALID }}
+          </small>
+        </div>
+
+        <div class="purpose">
+          <span class="p-float-label">
+            <i class="icon fas fa-question-circle"></i>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ addVisitConstants.PURPOSE_OF_VISIT }}"
+              ngModel
+              required
+              pattern="^(?! )[a-zA-Z ]{1,}"
+              name="purpose"
+              minlength="1"
+              maxlength="30"
+              #purpose="ngModel"
+              [disabled]="disableForm"
+            />
+          </span>
+          <small
+            *ngIf="purpose.invalid && purpose.touched  && purpose.errors?.['required']"
+            >{{ addVisitConstants.PURPOSE_REQ }}</small
+          >
+          <small
+            *ngIf="purpose.invalid && purpose.touched && !purpose.errors?.['required']"
+          >
+            {{ addVisitConstants.PURPOSE_INVALID }}
+          </small>
+        </div>
+
+        <div class="comments">
+          <span class="p-float-label">
+            <i class="icon fas fa-comment"></i>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ addVisitConstants.COMMENTS }}"
+              ngModel
+              id="comments"
+              pattern="^(?! )[a-zA-Z ]{1,}"
+              name="comments"
+              maxlength="100"
+              [disabled]="disableForm"
+              #comments="ngModel"
+            />
+            <small
+              *ngIf="
+                comments.invalid &&
+                comments.touched &&
+                comments.value.length > 0
+              "
+            >
+              {{ addVisitConstants.COMMENTS_INVALID }}
+            </small>
+          </span>
+        </div>
+        <div class="add-visit-btn">
+          <button
+            class="common-btn reset-btn"
+            [disabled]="!visitor"
+            (click)="reset(visitForm)"
+          >
+            <i class="fa-solid fa-undo"></i>
+            {{ addVisitConstants.RESET }}
+          </button>
+          <button class="common-btn save-btn" (click)="addVisit()">
+            <i class="fa-solid fa-check"></i>
+            {{ addVisitConstants.ADD_VISIT }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card flex justify-content-center">
+  <p-dialog
+    [header]="addVisitConstants.ADD_NEW_VISITOR"
+    [(visible)]="visible"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+    position="center"
+  >
+    <ng-template pTemplate="header">
+      <div class="heading-text-div">
+        <span class="heading-text">{{
+          addVisitConstants.ADD_NEW_VISITOR
+        }}</span>
+      </div>
+    </ng-template>
+    <app-add-visitor
+      *ngIf="visible"
+      (visible)="closePopUp($event)"
+    ></app-add-visitor>
+  </p-dialog>
+</div>
